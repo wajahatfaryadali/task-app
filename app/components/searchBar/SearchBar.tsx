@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import SelectMenu from "./selectMenu/SelectMenu";
 import {
   guestOptions,
@@ -130,7 +130,7 @@ const SearchBar = () => {
         </div>
 
         {optionsList.map((option, index) => (
-          <>
+          <Fragment key={index}>
             <SelectMenu
               label={option.label}
               options={option.options}
@@ -144,7 +144,7 @@ const SearchBar = () => {
             {index !== optionsList.length - 1 && (
               <hr className="border-[#E0E0E0] md:hidden" />
             )}
-          </>
+          </Fragment>
         ))}
         <div className="flex items-center justify-center md:justify-end">
           <SearchButton handleSearch={handleSearch} variant="primary" />
