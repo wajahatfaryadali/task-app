@@ -1,3 +1,21 @@
+export type IsOpenStateType = {
+  where: boolean;
+  when: boolean;
+  guests: boolean;
+};
+
+export type SelectedOptionsType = {
+  where: SelectOption;
+  when: SelectOption;
+  guests: SelectOption;
+};
+
+export enum MenuKeyEnum {
+  WHERE = "where",
+  WHEN = "when",
+  GUESTS = "guests",
+}
+
 export interface SelectOption {
   label: string;
   value: string;

@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import dropdownIcon from "../../../assets/svgs/dropdown-icon.svg";
-import type { SelectOption } from "../config";
+import type { MenuKeyEnum, SelectOption } from "../config";
 
 interface SelectMenuProps {
   label: string;
@@ -16,12 +16,16 @@ interface SelectMenuProps {
   isZeroPadding?: boolean;
   isOpen: boolean;
   handleOpenMenu: (key: string) => void;
+  keyName: MenuKeyEnum;
+  selectedOption: SelectOption;
+  handleSelectOption: (key: MenuKeyEnum, option: SelectOption) => void;
+
 }
 
 const SelectMenu = ({
   label,
   options,
-  defaultValue,
+  // defaultValue,
   showIcon = true,
   showlabel = true,
   isTextCenter = false,
@@ -29,18 +33,21 @@ const SelectMenu = ({
   isZeroPadding = false,
   isOpen = false,
   handleOpenMenu,
+  keyName,
+  selectedOption,
+  handleSelectOption,
 }: SelectMenuProps) => {
-  const initialOption = useMemo(() => {
-    if (defaultValue) {
-      const match = options.find((option) => option.value === defaultValue);
-      if (match) {
-        return match;
-      }
-    }
-    return { label: label, value: "" };
-  }, [defaultValue, options, label]);
-  const [selectedOption, setSelectedOption] =
-    useState<SelectOption>(initialOption);
+  // const initialOption = useMemo(() => {
+  //   if (defaultValue) {
+  //     const match = options.find((option) => option.value === defaultValue);
+  //     if (match) {
+  //       return match;
+  //     }
+  //   }
+  //   return { label: label, value: "" };
+  // }, [defaultValue, options, label]);
+  // const [selectedOption, setSelectedOption] =
+  //   useState<SelectOption>(initialOption);
   const menuRef = useRef<HTMLDivElement | null>(null);
 
   const toggleOpen = () => {
@@ -48,8 +55,8 @@ const SelectMenu = ({
   };
 
   const handleSelect = (option: SelectOption) => {
-    setSelectedOption(option);
-    handleOpenMenu(label.toLowerCase());
+    handleSelectOption(keyName, option);
+    handleOpenMenu(keyName);
   };
 
     /* eslint-disable react-hooks/exhaustive-deps */
@@ -64,7 +71,7 @@ const SelectMenu = ({
       }
 
       if (!menuRef.current.contains(event.target as Node)) {
-        handleOpenMenu(label.toLowerCase());
+        handleOpenMenu(keyName);
       }
     };
 
@@ -75,7 +82,7 @@ const SelectMenu = ({
       document.removeEventListener("mousedown", handleClickAway);
       document.removeEventListener("touchstart", handleClickAway);
     };
-  }, [isOpen, label]);
+  }, [isOpen, keyName]);
 
   return (
     <div className="relative" ref={menuRef}>

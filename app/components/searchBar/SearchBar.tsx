@@ -2,15 +2,17 @@
 
 import { useEffect, useRef, useState } from "react";
 import SelectMenu from "./selectMenu/SelectMenu";
-import { guestOptions, whenOptions, whereOptions } from "./config";
+import {
+  guestOptions,
+  IsOpenStateType,
+  MenuKeyEnum,
+  SelectedOptionsType,
+  SelectOption,
+  whenOptions,
+  whereOptions,
+} from "./config";
 import SearchButton from "./searchButton/SearchButton";
 import VenueOrVendor from "./venueOrVendor/VenueOrVendor";
-
-type IsOpenStateType = {
-  where: boolean;
-  when: boolean;
-  guests: boolean;
-};
 
 const SearchBar = () => {
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -21,12 +23,11 @@ const SearchBar = () => {
     guests: false,
   });
 
-  const handleOpenMenu = (key: string) => {
-    setIsOpen((prev) => ({
-      ...prev,
-      [key as keyof IsOpenStateType]: !prev[key as keyof IsOpenStateType],
-    }));
-  };
+  const [selectedOptions, setSelectedOptions] = useState<SelectedOptionsType>({
+    where: whereOptions[0],
+    when: whenOptions[0],
+    guests: guestOptions[0],
+  });
 
   useEffect(() => {
     const target = containerRef.current;
@@ -58,6 +59,24 @@ const SearchBar = () => {
     };
   }, []);
 
+  const handleOpenMenu = (key: string) => {
+    setIsOpen((prev) => ({
+      ...prev,
+      [key as keyof IsOpenStateType]: !prev[key as keyof IsOpenStateType],
+    }));
+  };
+
+  const handleSelectOption = (key: MenuKeyEnum, option: SelectOption) => {
+    setSelectedOptions((prev) => ({
+      ...prev,
+      [key]: option,
+    }));
+  };
+
+  const handleSearch = () => {
+    console.log("selectedOptions *************** ", selectedOptions);
+  };
+
   return (
     <div
       ref={containerRef}
@@ -78,6 +97,9 @@ const SearchBar = () => {
           defaultValue="dubai"
           isOpen={isOpen.where}
           handleOpenMenu={handleOpenMenu}
+          keyName={MenuKeyEnum.WHERE}
+          selectedOption={selectedOptions.where}
+          handleSelectOption={handleSelectOption}
         />
         <hr className="border-[#E0E0E0] md:hidden" />
         <SelectMenu
@@ -86,6 +108,9 @@ const SearchBar = () => {
           defaultValue="anytime"
           isOpen={isOpen.when}
           handleOpenMenu={handleOpenMenu}
+          keyName={MenuKeyEnum.WHEN}
+          selectedOption={selectedOptions.when}
+          handleSelectOption={handleSelectOption}
         />
         <hr className="border-[#E0E0E0] md:hidden" />
         <SelectMenu
@@ -94,9 +119,12 @@ const SearchBar = () => {
           defaultValue="10-20"
           isOpen={isOpen.guests}
           handleOpenMenu={handleOpenMenu}
+          keyName={MenuKeyEnum.GUESTS}
+          selectedOption={selectedOptions.guests}
+          handleSelectOption={handleSelectOption}
         />
         <div className="flex items-center justify-center md:justify-end">
-          <SearchButton />
+          <SearchButton handleSearch={handleSearch} variant="primary" />
         </div>
       </div>
     </div>
