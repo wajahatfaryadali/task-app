@@ -9,9 +9,23 @@ interface SelectMenuProps {
   label: string;
   options: SelectOption[];
   defaultValue?: string;
+  showIcon?: boolean;
+  showlabel?: boolean;
+  isTextCenter?: boolean;
+  fontSize?: "14px" | "16px";
+  isZeroPadding?: boolean;
 }
 
-const SelectMenu = ({ label, options, defaultValue }: SelectMenuProps) => {
+const SelectMenu = ({
+  label,
+  options,
+  defaultValue,
+  showIcon = true,
+  showlabel = true,
+  isTextCenter = false,
+  fontSize = "16px",
+  isZeroPadding = false,
+}: SelectMenuProps) => {
   const initialOption = useMemo(() => {
     if (defaultValue) {
       const match = options.find((option) => option.value === defaultValue);
@@ -19,8 +33,8 @@ const SelectMenu = ({ label, options, defaultValue }: SelectMenuProps) => {
         return match;
       }
     }
-    return options[0];
-  }, [defaultValue, options]);
+    return { label: label, value: "" };
+  }, [defaultValue, options, label]);
 
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] =
@@ -40,27 +54,31 @@ const SelectMenu = ({ label, options, defaultValue }: SelectMenuProps) => {
       <button
         type="button"
         onClick={toggleOpen}
-        className="flex w-full flex-col px-4 py-3 text-left transition"
+        className={`flex w-full flex-col ${isZeroPadding ? "px-2 lg:px-4 py-0" : "px-2 lg:px-4 py-3"} text-left transition cursor-pointer`}
       >
-        <span className="text-[14px] font-medium tracking-[0.08em] text-[#808080]">
-          {label}
-        </span>
+        {showlabel && (
+          <span className="text-[14px] font-medium tracking-[0.08em] text-[#808080]">
+            {label}
+          </span>
+        )}
         <div className="mt-1 flex items-center justify-between">
-          <span className="text-[16px] font-medium leading-[100%] text-[#000000]">
+          <span className={`text-[${fontSize}] font-medium leading-[100%] text-[#000000]`}>
             {selectedOption.label}
           </span>
-          <Image
-            src={dropdownIcon}
-            alt={`${label} dropdown`}
-            width={12}
-            height={6}
-            className={`transition ${isOpen ? "rotate-180" : ""}`}
-          />
+          {showIcon && (
+            <Image
+              src={dropdownIcon}
+              alt={`${label} dropdown`}
+              width={12}
+              height={6}
+              className={`transition ${isOpen ? "rotate-180" : ""}`}
+            />
+          )}
         </div>
       </button>
 
       {isOpen && (
-        <div className="absolute left-0 right-0 top-full z-20 mt-2 max-h-40 overflow-y-auto border border-[#F2F2F2] bg-white shadow-[0px_32px_60px_-40px_rgba(20,16,36,0.5)] ">
+        <div className="absolute left-0 right-0 top-full z-20 mt-2 max-h-40 overflow-y-auto border border-[#F2F2F2] bg-white shadow-[0px_32px_60px_-40px_rgba(20,16,36,0.5)] min-w-[120px] ">
           {options.map((option) => {
             const isSelected = option.value === selectedOption.value;
             return (
@@ -68,11 +86,11 @@ const SelectMenu = ({ label, options, defaultValue }: SelectMenuProps) => {
                 key={option.value}
                 type="button"
                 onClick={() => handleSelect(option)}
-                className={`flex w-full items-center justify-between px-4 py-2 text-[14px] font-medium text-[#1A1A1A] transition hover:bg-[#FFF5F2] ${
-                  isSelected ? "text-[#FF5037]" : ""
-                }`}
+                className={`flex w-full items-center justify-between px-4 py-2 text-[14px] font-medium text-[#1A1A1A] transition hover:bg-[#FFF5F2] 
+                  ${isTextCenter ? "justify-center" : ""}
+                  ${isSelected ? "text-[#FF5037]" : ""}`}
               >
-                <span>{option.label}</span>
+                <span className={``}>{option.label}</span>
               </button>
             );
           })}

@@ -5,6 +5,7 @@ import Image from "next/image";
 import logo from "../../assets/svgs/logo.svg";
 import userIcon from "../../assets/svgs/user-icon.svg";
 import dropdownIcon from "../../assets/svgs/dropdown-icon.svg";
+import TopbarSearchMenu from "./topbarSearchMenu/TopbarSearchMenu";
 
 const Topbar = () => {
   const [isSearchBarVisible, setIsSearchBarVisible] = useState(true);
@@ -48,11 +49,13 @@ const Topbar = () => {
         </div>
         {!isSearchBarVisible && (
           <div className="text-black">
-            searchbar
+            <TopbarSearchMenu />
           </div>
         )}
-        <div className="flex items-center gap-3">
-          <button className="flex items-center gap-2 rounded-[10px] bg-white px-6 py-2 shadow-md transition hover:shadow-lg">
+        {/* baby shark to be removed*/}
+        {/* only for large screens baki nichy  */}
+        <div className={`items-center gap-3 hidden ${isSearchBarVisible ? "md:flex" : "lg:flex"}`}>
+          <button className="flex items-center gap-2 rounded-[10px] bg-white px-6 py-2 shadow-md transition hover:shadow-lg h-[40px] cursor-pointer ">
             <span className="font-medium text-[#FF5733]">Add your listing</span>
             <Image
               src={dropdownIcon}
@@ -61,7 +64,7 @@ const Topbar = () => {
               height={6}
             />
           </button>
-          <button className="flex items-center gap-2 rounded-[10px] bg-white px-5 py-2 shadow-md transition hover:shadow-lg">
+          <button className="flex items-center gap-2 rounded-[10px] bg-white px-5 py-2 shadow-md transition hover:shadow-lg h-[40px] cursor-pointer">
             <span className="font-medium text-[#FF5733]">EN</span>
             <Image
               src={dropdownIcon}
@@ -70,7 +73,17 @@ const Topbar = () => {
               height={6}
             />
           </button>
-          <button className="flex items-center justify-center rounded-[10px] bg-white px-4 py-2 shadow-md transition hover:shadow-lg">
+          <button className="flex items-center justify-center rounded-[10px] bg-white px-4 py-2 shadow-md transition hover:shadow-lg h-[40px] w-[44px] cursor-pointer">
+            <Image src={userIcon} alt="User menu" width={10} height={15} />
+          </button>
+        </div>
+
+        {/* baby shark to be removed*/}
+        <div className={`flex ${isSearchBarVisible ? "md:hidden" : "lg:hidden"} items-center gap-3`}>
+          <p>
+            Baby Shark 
+          </p>
+          <button className="flex items-center justify-center rounded-[10px] bg-white px-4 py-2 shadow-md transition hover:shadow-lg h-[40px] w-[44px] cursor-pointer">
             <Image src={userIcon} alt="User menu" width={10} height={15} />
           </button>
         </div>

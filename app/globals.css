@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+@theme {
+  --breakpoint-md: 768px;
+}
+
 /* For Webkit browsers (Chrome, Safari) */
 ::-webkit-scrollbar {
   width: 6px; /* Set the width of the scroll bar */
