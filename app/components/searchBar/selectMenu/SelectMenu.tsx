@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import dropdownIcon from "../../../assets/svgs/dropdown-icon.svg";
 import type { SelectOption } from "../config";
@@ -39,6 +39,7 @@ const SelectMenu = ({
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] =
     useState<SelectOption>(initialOption);
+  const menuRef = useRef<HTMLDivElement | null>(null);
 
   const toggleOpen = () => {
     setIsOpen((prev) => !prev);
@@ -49,8 +50,32 @@ const SelectMenu = ({
     setIsOpen(false);
   };
 
+  useEffect(() => {
+    if (!isOpen) {
+      return;
+    }
+
+    const handleClickAway = (event: MouseEvent | TouchEvent) => {
+      if (!menuRef.current) {
+        return;
+      }
+
+      if (!menuRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickAway);
+    document.addEventListener("touchstart", handleClickAway);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickAway);
+      document.removeEventListener("touchstart", handleClickAway);
+    };
+  }, [isOpen]);
+
   return (
-    <div className="relative">
+    <div className="relative" ref={menuRef}>
       <button
         type="button"
         onClick={toggleOpen}
