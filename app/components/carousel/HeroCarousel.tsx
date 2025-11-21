@@ -37,22 +37,21 @@ const HeroCarousel = () => {
         <div className="w-full mt-30">
           <SearchBar />
         </div>
-      </div>
-
-      <div className="absolute bottom-10 left-1/2 z-10 flex -translate-x-1/2 gap-2">
-        {slides.map((_, index) => (
-          <button
-            key={`hero-dot-${index}`}
-            onClick={() => setActiveIndex(index)}
-            aria-label={`Show slide ${index + 1}`}
-            aria-current={index === activeIndex ? "true" : undefined}
-            className={`h-2 rounded-full transition-all duration-300 ease-out cursor-pointer ${
-              index === activeIndex
-                ? "w-[28px] bg-[#FEC432]"
-                : "w-2 bg-[#D9D9D9]"
-            }`}
-          />
-        ))}
+        <div className="absolute bottom-30 left-1/2 z-10 flex -translate-x-1/2 gap-2">
+          {slides.map((_, index) => (
+            <button
+              key={`hero-dot-${index}`}
+              onClick={() => setActiveIndex(index)}
+              aria-label={`Show slide ${index + 1}`}
+              aria-current={index === activeIndex ? "true" : undefined}
+              className={`h-2 rounded-full transition-all duration-300 ease-out cursor-pointer ${
+                index === activeIndex
+                  ? "w-[28px] bg-[#FEC432]"
+                  : "w-2 bg-[#D9D9D9]"
+              }`}
+            />
+          ))}
+        </div>
       </div>
     </section>
   );
