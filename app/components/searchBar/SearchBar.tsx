@@ -6,17 +6,26 @@ import { guestOptions, whenOptions, whereOptions } from "./config";
 import SearchButton from "./searchButton/SearchButton";
 import VenueOrVendor from "./venueOrVendor/VenueOrVendor";
 
+type IsOpenStateType = {
+  where: boolean;
+  when: boolean;
+  guests: boolean;
+};
+
 const SearchBar = () => {
   const containerRef = useRef<HTMLDivElement | null>(null);
 
-  const [isOpen, setIsOpen] = useState<Record<string, boolean>>({
+  const [isOpen, setIsOpen] = useState<IsOpenStateType>({
     where: false,
     when: false,
     guests: false,
   });
 
   const handleOpenMenu = (key: string) => {
-    setIsOpen((prev) => ({ ...prev, [key]: !prev[key] }));
+    setIsOpen((prev) => ({
+      ...prev,
+      [key as keyof IsOpenStateType]: !prev[key as keyof IsOpenStateType],
+    }));
   };
 
   useEffect(() => {
