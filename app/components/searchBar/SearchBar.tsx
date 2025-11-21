@@ -77,6 +77,39 @@ const SearchBar = () => {
     console.log("selectedOptions *************** ", selectedOptions);
   };
 
+  const optionsList = [
+    {
+      label: "Where",
+      options: whereOptions,
+      defaultValue: "dubai",
+      isOpen: isOpen.where,
+      handleOpenMenu: handleOpenMenu,
+      keyName: MenuKeyEnum.WHERE,
+      selectedOption: selectedOptions.where,
+      handleSelectOption: handleSelectOption,
+    },
+    {
+      label: "When",
+      options: whenOptions,
+      defaultValue: "anytime",
+      isOpen: isOpen.when,
+      handleOpenMenu: handleOpenMenu,
+      keyName: MenuKeyEnum.WHEN,
+      selectedOption: selectedOptions.when,
+      handleSelectOption: handleSelectOption,
+    },
+    {
+      label: "Guests",
+      options: guestOptions,
+      defaultValue: "10-20",
+      isOpen: isOpen.guests,
+      handleOpenMenu: handleOpenMenu,
+      keyName: MenuKeyEnum.GUESTS,
+      selectedOption: selectedOptions.guests,
+      handleSelectOption: handleSelectOption,
+    },
+  ];
+
   return (
     <div
       ref={containerRef}
@@ -91,38 +124,24 @@ const SearchBar = () => {
         <div className="md:hidden">
           <VenueOrVendor />
         </div>
-        <SelectMenu
-          label="Where"
-          options={whereOptions}
-          defaultValue="dubai"
-          isOpen={isOpen.where}
-          handleOpenMenu={handleOpenMenu}
-          keyName={MenuKeyEnum.WHERE}
-          selectedOption={selectedOptions.where}
-          handleSelectOption={handleSelectOption}
-        />
-        <hr className="border-[#E0E0E0] md:hidden" />
-        <SelectMenu
-          label="When"
-          options={whenOptions}
-          defaultValue="anytime"
-          isOpen={isOpen.when}
-          handleOpenMenu={handleOpenMenu}
-          keyName={MenuKeyEnum.WHEN}
-          selectedOption={selectedOptions.when}
-          handleSelectOption={handleSelectOption}
-        />
-        <hr className="border-[#E0E0E0] md:hidden" />
-        <SelectMenu
-          label="Guests"
-          options={guestOptions}
-          defaultValue="10-20"
-          isOpen={isOpen.guests}
-          handleOpenMenu={handleOpenMenu}
-          keyName={MenuKeyEnum.GUESTS}
-          selectedOption={selectedOptions.guests}
-          handleSelectOption={handleSelectOption}
-        />
+
+        {optionsList.map((option, index) => (
+          <>
+            <SelectMenu
+              label={option.label}
+              options={option.options}
+              defaultValue={option.defaultValue}
+              isOpen={option.isOpen}
+              handleOpenMenu={option.handleOpenMenu}
+              keyName={option.keyName}
+              selectedOption={option.selectedOption}
+              handleSelectOption={option.handleSelectOption}
+            />
+            {index !== optionsList.length - 1 && (
+              <hr className="border-[#E0E0E0] md:hidden" />
+            )}
+          </>
+        ))}
         <div className="flex items-center justify-center md:justify-end">
           <SearchButton handleSearch={handleSearch} variant="primary" />
         </div>
