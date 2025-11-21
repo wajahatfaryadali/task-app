@@ -13,6 +13,7 @@ import {
 } from "./config";
 import SearchButton from "./searchButton/SearchButton";
 import VenueOrVendor from "./venueOrVendor/VenueOrVendor";
+import toast from "react-hot-toast";
 
 const SearchBar = () => {
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -74,6 +75,9 @@ const SearchBar = () => {
   };
 
   const handleSearch = () => {
+    toast.success("*** check console ***", {
+      duration: 1000,
+    });
     console.log("selectedOptions *************** ", selectedOptions);
   };
 

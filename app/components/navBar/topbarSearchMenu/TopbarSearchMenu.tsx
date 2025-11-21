@@ -11,6 +11,7 @@ import {
 } from "../../searchBar/config";
 import SelectMenu from "../../searchBar/selectMenu/SelectMenu";
 import SearchButton from "../../searchBar/searchButton/SearchButton";
+import toast from "react-hot-toast";
 
 const TopbarSearchMenu = () => {
   const [isOpen, setIsOpen] = useState<Record<string, boolean>>({
@@ -71,6 +72,9 @@ const TopbarSearchMenu = () => {
   ];
 
   const handleSearch = () => {
+    toast.success("*** check console ***", {
+      duration: 1000,
+    });
     console.log("selectedOptions *************** ", selectedOptions);
   };
 

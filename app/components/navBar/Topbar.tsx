@@ -6,6 +6,8 @@ import logo from "../../assets/svgs/logo.svg";
 import userIcon from "../../assets/svgs/user-icon.svg";
 import dropdownIcon from "../../assets/svgs/dropdown-icon.svg";
 import TopbarSearchMenu from "./topbarSearchMenu/TopbarSearchMenu";
+import menuIcon from "../../assets/svgs/menu-icon.svg";
+import toast from "react-hot-toast";
 
 const Topbar = () => {
   const [isSearchBarVisible, setIsSearchBarVisible] = useState(true);
@@ -31,6 +33,10 @@ const Topbar = () => {
   const navBackgroundClass = isSearchBarVisible
     ? "bg-transparent text-white"
     : "bg-white text-black shadow-[0px_20px_45px_-35px_rgba(0,0,0,0.7)]";
+
+  const handleNotImplementedClick = () => {
+    toast.error("This feature is not implemented yet");
+  };
 
   return (
     <nav
@@ -59,7 +65,7 @@ const Topbar = () => {
             isSearchBarVisible ? "md:flex" : "lg:flex"
           }`}
         >
-          <button className="flex items-center gap-2 rounded-[10px] bg-white px-6 py-2 shadow-md transition hover:shadow-lg h-[40px] cursor-pointer ">
+          <button onClick={handleNotImplementedClick} className="flex items-center gap-2 rounded-[10px] bg-white px-6 py-2 shadow-md transition hover:shadow-lg h-[40px] cursor-pointer ">
             <span className="font-medium text-[#FF5733]">Add your listing</span>
             <Image
               src={dropdownIcon}
@@ -68,7 +74,7 @@ const Topbar = () => {
               height={6}
             />
           </button>
-          <button className="flex items-center gap-2 rounded-[10px] bg-white px-5 py-2 shadow-md transition hover:shadow-lg h-[40px] cursor-pointer">
+          <button onClick={handleNotImplementedClick} className="flex items-center gap-2 rounded-[10px] bg-white px-5 py-2 shadow-md transition hover:shadow-lg h-[40px] cursor-pointer">
             <span className="font-medium text-[#FF5733]">EN</span>
             <Image
               src={dropdownIcon}
@@ -77,22 +83,48 @@ const Topbar = () => {
               height={6}
             />
           </button>
-          <button className="flex items-center justify-center rounded-[10px] bg-white px-4 py-2 shadow-md transition hover:shadow-lg h-[40px] w-[44px] cursor-pointer">
+          <button onClick={handleNotImplementedClick} className="flex items-center justify-center rounded-[10px] bg-white px-4 py-2 shadow-md transition hover:shadow-lg h-[40px] w-[44px] cursor-pointer">
             <Image src={userIcon} alt="User menu" width={10} height={15} />
           </button>
         </div>
 
         {/* baby shark to be removed*/}
-        <div
-          className={`flex ${
-            isSearchBarVisible ? "md:hidden" : "lg:hidden"
-          } items-center gap-3`}
-        >
-          <p>Baby Shark</p>
-          <button className="flex items-center justify-center rounded-[10px] bg-white px-4 py-2 shadow-md transition hover:shadow-lg h-[40px] w-[44px] cursor-pointer">
-            <Image src={userIcon} alt="User menu" width={10} height={15} />
-          </button>
-        </div>
+        {!isSearchBarVisible ? (
+          <>
+            <div
+              className={`flex ${
+                isSearchBarVisible ? "md:hidden" : "lg:hidden"
+              } items-center gap-3`}
+            >
+              <p>Baby Shark</p>
+              <button onClick={handleNotImplementedClick} className="flex items-center justify-center rounded-[10px] bg-white px-4 py-2 shadow-md transition hover:shadow-lg h-[40px] w-[44px] cursor-pointer">
+                <Image src={userIcon} alt="User menu" width={10} height={15} />
+              </button>
+            </div>
+          </>
+        ) : (
+          <>
+            <div
+              className={`flex ${
+                isSearchBarVisible ? "md:hidden" : "lg:hidden"
+              } items-center gap-3`}
+            >
+              <button onClick={handleNotImplementedClick} className="flex items-center gap-2 rounded-[10px] bg-white px-6 py-2 shadow-md transition hover:shadow-lg h-[40px] cursor-pointer ">
+                <span className="font-medium text-black">Add your listing</span>
+                <Image
+                  src={dropdownIcon}
+                  alt="Dropdown icon"
+                  width={12}
+                  height={6}
+                />
+              </button>
+
+              <button onClick={handleNotImplementedClick} className="flex items-center justify-center shadow-md transition hover:shadow-lg h-[40px] w-[44px] cursor-pointer">
+                <Image src={menuIcon} alt="Menu icon" width={44} height={44} />
+              </button>
+            </div>
+          </>
+        )}
       </div>
       {!isSearchBarVisible && (
         <div
