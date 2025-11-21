@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import SelectMenu from "./selectMenu/SelectMenu";
 import { guestOptions, whenOptions, whereOptions } from "./config";
 import SearchButton from "./searchButton/SearchButton";
@@ -8,6 +8,16 @@ import VenueOrVendor from "./venueOrVendor/VenueOrVendor";
 
 const SearchBar = () => {
   const containerRef = useRef<HTMLDivElement | null>(null);
+
+  const [isOpen, setIsOpen] = useState<Record<string, boolean>>({
+    where: false,
+    when: false,
+    guests: false,
+  });
+
+  const handleOpenMenu = (key: string) => {
+    setIsOpen((prev) => ({ ...prev, [key]: !prev[key] }));
+  };
 
   useEffect(() => {
     const target = containerRef.current;
@@ -53,14 +63,28 @@ const SearchBar = () => {
         <div className="md:hidden">
           <VenueOrVendor />
         </div>
-        <SelectMenu label="Where" options={whereOptions} defaultValue="dubai" />
+        <SelectMenu
+          label="Where"
+          options={whereOptions}
+          defaultValue="dubai"
+          isOpen={isOpen.where}
+          handleOpenMenu={handleOpenMenu}
+        />
         <hr className="border-[#E0E0E0] md:hidden" />
-        <SelectMenu label="When" options={whenOptions} defaultValue="anytime" />
+        <SelectMenu
+          label="When"
+          options={whenOptions}
+          defaultValue="anytime"
+          isOpen={isOpen.when}
+          handleOpenMenu={handleOpenMenu}
+        />
         <hr className="border-[#E0E0E0] md:hidden" />
         <SelectMenu
           label="Guests"
           options={guestOptions}
           defaultValue="10-20"
+          isOpen={isOpen.guests}
+          handleOpenMenu={handleOpenMenu}
         />
         <div className="flex items-center justify-center md:justify-end">
           <SearchButton />

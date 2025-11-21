@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
 import searchIcon from "../../../assets/svgs/search-icon.svg";
 import {
@@ -8,21 +11,38 @@ import {
 import SelectMenu from "../../searchBar/selectMenu/SelectMenu";
 
 const TopbarSearchMenu = () => {
+  const [isOpen, setIsOpen] = useState<Record<string, boolean>>({
+    where: false,
+    when: false,
+    guests: false,
+  });
+
+  const handleOpenMenu = (key: string) => {
+    console.log(key);
+    setIsOpen((prev) => ({ ...prev, [key]: !prev[key] }));
+  };
+
   const optionsList = [
     {
       label: "Where",
       options: whereOptions,
       defaultValue: "",
+      isOpen: isOpen.where,
+      handleOpenMenu: handleOpenMenu,
     },
     {
       label: "When",
       options: whenOptions,
       defaultValue: "",
+      isOpen: isOpen.when,
+      handleOpenMenu: handleOpenMenu,
     },
     {
       label: "Guests",
       options: guestOptions,
       defaultValue: "",
+      isOpen: isOpen.guests,
+      handleOpenMenu: handleOpenMenu,
     },
   ];
   return (
@@ -42,6 +62,8 @@ const TopbarSearchMenu = () => {
               isTextCenter={true}
               fontSize="14px"
               isZeroPadding={true}
+              isOpen={option.isOpen}
+              handleOpenMenu={option.handleOpenMenu}
             />
           </div>
         ))}

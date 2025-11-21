@@ -14,6 +14,8 @@ interface SelectMenuProps {
   isTextCenter?: boolean;
   fontSize?: "14px" | "16px";
   isZeroPadding?: boolean;
+  isOpen: boolean;
+  handleOpenMenu: (key: string) => void;
 }
 
 const SelectMenu = ({
@@ -25,6 +27,8 @@ const SelectMenu = ({
   isTextCenter = false,
   fontSize = "16px",
   isZeroPadding = false,
+  isOpen = false,
+  handleOpenMenu,
 }: SelectMenuProps) => {
   const initialOption = useMemo(() => {
     if (defaultValue) {
@@ -35,21 +39,20 @@ const SelectMenu = ({
     }
     return { label: label, value: "" };
   }, [defaultValue, options, label]);
-
-  const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] =
     useState<SelectOption>(initialOption);
   const menuRef = useRef<HTMLDivElement | null>(null);
 
   const toggleOpen = () => {
-    setIsOpen((prev) => !prev);
+    handleOpenMenu(label.toLowerCase());
   };
 
   const handleSelect = (option: SelectOption) => {
     setSelectedOption(option);
-    setIsOpen(false);
+    handleOpenMenu(label.toLowerCase());
   };
 
+  /* eslint-disable react-hooks/exhaustive-deps */
   useEffect(() => {
     if (!isOpen) {
       return;
@@ -61,7 +64,7 @@ const SelectMenu = ({
       }
 
       if (!menuRef.current.contains(event.target as Node)) {
-        setIsOpen(false);
+        handleOpenMenu(label.toLowerCase());
       }
     };
 
@@ -72,14 +75,16 @@ const SelectMenu = ({
       document.removeEventListener("mousedown", handleClickAway);
       document.removeEventListener("touchstart", handleClickAway);
     };
-  }, [isOpen]);
+  }, [isOpen, label]);
 
   return (
     <div className="relative" ref={menuRef}>
       <button
         type="button"
         onClick={toggleOpen}
-        className={`flex w-full flex-col ${isZeroPadding ? "px-2 lg:px-4 py-0" : "px-2 lg:px-4 py-3"} text-left transition cursor-pointer`}
+        className={`flex w-full flex-col ${
+          isZeroPadding ? "px-2 lg:px-4 py-0" : "px-2 lg:px-4 py-3"
+        } text-left transition cursor-pointer`}
       >
         {showlabel && (
           <span className="text-[14px] font-medium tracking-[0.08em] text-[#808080]">
@@ -87,7 +92,9 @@ const SelectMenu = ({
           </span>
         )}
         <div className="mt-1 flex items-center justify-between">
-          <span className={`text-[${fontSize}] font-medium leading-[100%] text-[#000000]`}>
+          <span
+            className={`text-[${fontSize}] font-medium leading-[100%] text-[#000000]`}
+          >
             {selectedOption.label}
           </span>
           {showIcon && (
