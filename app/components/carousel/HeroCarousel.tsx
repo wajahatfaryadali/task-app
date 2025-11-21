@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import heroImage from "../../assets/pngs/img-1.png";
+import SearchBar from "../searchBar/SearchBar";
 
 const slides = [heroImage, heroImage, heroImage, heroImage];
 
@@ -29,13 +30,16 @@ const HeroCarousel = () => {
         </div>
       ))}
 
-      <div className="relative z-10 flex h-full max-w-[1054px] mx-auto items-center justify-center px-6 text-center">
+      <div className="relative z-10 flex h-full flex-col max-w-[1054px] mx-auto items-center justify-center px-6 text-center">
         <h1 className="mt-4 text-[70px] font-bold leading-tight md:text-6xl max-w-[650px]">
           Celebrate in venues big and small
         </h1>
+        <div className="w-full mt-20">
+          <SearchBar />
+        </div>
       </div>
 
-      <div className="absolute bottom-10 left-1/2 z-10 flex -translate-x-1/2 gap-2">
+      <div className="absolute bottom-10 left-1/2 z-1 flex -translate-x-1/2 gap-2">
         {slides.map((_, index) => (
           <button
             key={`hero-dot-${index}`}

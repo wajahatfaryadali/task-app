@@ -1,1 +1,15 @@
 @import "tailwindcss";
+
+/* For Webkit browsers (Chrome, Safari) */
+::-webkit-scrollbar {
+  width: 6px; /* Set the width of the scroll bar */
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent !important /* Set the background color of the track */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #ff5037 !important; /* Set the color of the scroll thumb */
+  border-radius: 3px; /* Add rounded corners to the scroll thumb */
+}
