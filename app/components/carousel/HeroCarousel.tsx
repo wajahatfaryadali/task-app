@@ -1,16 +1,23 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import heroImage1 from "../../assets/pngs/img-1.png";
 import heroImage2 from "../../assets/jpgs/img-2.jpg";
 import heroImage3 from "../../assets/jpgs/img-3.jpg";
 import SearchBar from "../searchBar/SearchBar";
 
-const slides = [heroImage1, heroImage2, heroImage3];
+const slides = [heroImage1, heroImage2, heroImage3, heroImage2];
 
 const HeroCarousel = () => {
   const [activeIndex, setActiveIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveIndex((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <section className="relative h-screen w-full overflow-hidden text-white">
