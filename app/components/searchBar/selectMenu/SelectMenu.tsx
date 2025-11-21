@@ -2,8 +2,8 @@
 
 import { useMemo, useState } from "react";
 import Image from "next/image";
-import dropdownIcon from "../../assets/svgs/dropdown-icon.svg";
-import type { SelectOption } from "./config";
+import dropdownIcon from "../../../assets/svgs/dropdown-icon.svg";
+import type { SelectOption } from "../config";
 
 interface SelectMenuProps {
   label: string;

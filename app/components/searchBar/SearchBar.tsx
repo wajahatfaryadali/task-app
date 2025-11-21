@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import SelectMenu from "./SelectMenu";
+import SelectMenu from "./selectMenu/SelectMenu";
 import { guestOptions, whenOptions, whereOptions } from "./config";
 import SearchButton from "./searchButton/SearchButton";
 import VenueOrVendor from "./venueOrVendor/VenueOrVendor";

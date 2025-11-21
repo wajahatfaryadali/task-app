@@ -2,10 +2,12 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import heroImage from "../../assets/pngs/img-1.png";
+import heroImage1 from "../../assets/pngs/img-1.png";
+import heroImage2 from "../../assets/jpgs/img-2.jpg";
+import heroImage3 from "../../assets/jpgs/img-3.jpg";
 import SearchBar from "../searchBar/SearchBar";
 
-const slides = [heroImage, heroImage, heroImage, heroImage];
+const slides = [heroImage1, heroImage2, heroImage3];
 
 const HeroCarousel = () => {
   const [activeIndex, setActiveIndex] = useState(0);

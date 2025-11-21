@@ -5,7 +5,7 @@ import {
   whenOptions,
   whereOptions,
 } from "../../searchBar/config";
-import SelectMenu from "../../searchBar/SelectMenu";
+import SelectMenu from "../../searchBar/selectMenu/SelectMenu";
 
 const TopbarSearchMenu = () => {
   const optionsList = [
