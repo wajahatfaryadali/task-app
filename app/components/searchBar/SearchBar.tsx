@@ -47,9 +47,11 @@ const SearchBar = () => {
       <div className="hidden lg:block">
         <VenueOrVendor />
       </div>
-      <div className="grid gap-6 md:grid-cols-[repeat(3,minmax(0,1fr))_auto]">
+      <div className="grid gap-2 md:gap-6 md:grid-cols-[repeat(3,minmax(0,1fr))_auto]">
         <SelectMenu label="Where" options={whereOptions} defaultValue="dubai" />
+        <hr className="border-[#E0E0E0] md:hidden"/>
         <SelectMenu label="When" options={whenOptions} defaultValue="anytime" />
+        <hr className="border-[#E0E0E0] md:hidden"/>
         <SelectMenu
           label="Guests"
           options={guestOptions}
