@@ -12,6 +12,28 @@ export default function Home() {
         <h2 className="text-[40px] font-bold leading-tight md:text-6xl max-w-[650px]">  hello</h2>
         <h2 className="text-[40px] font-bold leading-tight md:text-6xl max-w-[650px]">  hello</h2>
         <h2 className="text-[40px] font-bold leading-tight md:text-6xl max-w-[650px]">  hello</h2>
+        <h2 className="text-[40px] font-bold leading-tight md:text-6xl max-w-[650px]">  hello</h2>
+        <h2 className="text-[40px] font-bold leading-tight md:text-6xl max-w-[650px]">  hello</h2>
+        <h2 className="text-[40px] font-bold leading-tight md:text-6xl max-w-[650px]">  hello</h2>
+        <h2 className="text-[40px] font-bold leading-tight md:text-6xl max-w-[650px]">  hello</h2>
+        <h2 className="text-[40px] font-bold leading-tight md:text-6xl max-w-[650px]">  hello</h2>
+        <h2 className="text-[40px] font-bold leading-tight md:text-6xl max-w-[650px]">  hello</h2>
+        <h2 className="text-[40px] font-bold leading-tight md:text-6xl max-w-[650px]">  hello</h2>
+        <h2 className="text-[40px] font-bold leading-tight md:text-6xl max-w-[650px]">  hello</h2>
+        <h2 className="text-[40px] font-bold leading-tight md:text-6xl max-w-[650px]">  hello</h2>
+        <h2 className="text-[40px] font-bold leading-tight md:text-6xl max-w-[650px]">  hello</h2>
+        <h2 className="text-[40px] font-bold leading-tight md:text-6xl max-w-[650px]">  hello</h2>
+        <h2 className="text-[40px] font-bold leading-tight md:text-6xl max-w-[650px]">  hello</h2>
+        <h2 className="text-[40px] font-bold leading-tight md:text-6xl max-w-[650px]">  hello</h2>
+        <h2 className="text-[40px] font-bold leading-tight md:text-6xl max-w-[650px]">  hello</h2>
+        <h2 className="text-[40px] font-bold leading-tight md:text-6xl max-w-[650px]">  hello</h2>
+        <h2 className="text-[40px] font-bold leading-tight md:text-6xl max-w-[650px]">  hello</h2>
+        <h2 className="text-[40px] font-bold leading-tight md:text-6xl max-w-[650px]">  hello</h2>
+        <h2 className="text-[40px] font-bold leading-tight md:text-6xl max-w-[650px]">  hello</h2>
+        <h2 className="text-[40px] font-bold leading-tight md:text-6xl max-w-[650px]">  hello</h2>
+        <h2 className="text-[40px] font-bold leading-tight md:text-6xl max-w-[650px]">  hello</h2>
+        <h2 className="text-[40px] font-bold leading-tight md:text-6xl max-w-[650px]">  hello</h2>
+        <h2 className="text-[40px] font-bold leading-tight md:text-6xl max-w-[650px]">  hello</h2>
 
       </div>
     </main>
