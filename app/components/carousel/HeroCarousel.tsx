@@ -29,18 +29,10 @@ const HeroCarousel = () => {
         </div>
       ))}
 
-      <div className="relative z-10 flex h-full w-full items-center justify-center px-6 text-center">
-        <div>
-          <p className="text-sm uppercase tracking-[0.4em] text-white/70">
-            Celebrate
-          </p>
-          <h1 className="mt-4 text-4xl font-bold leading-tight md:text-6xl">
-            Celebrate in venues big and small
-          </h1>
-          <p className="mt-4 text-lg text-white/80 md:text-xl">
-            Find the perfect venue for any occasion with curated listings.
-          </p>
-        </div>
+      <div className="relative z-10 flex h-full max-w-[1054px] mx-auto items-center justify-center px-6 text-center">
+        <h1 className="mt-4 text-[70px] font-bold leading-tight md:text-6xl max-w-[650px]">
+          Celebrate in venues big and small
+        </h1>
       </div>
 
       <div className="absolute bottom-10 left-1/2 z-10 flex -translate-x-1/2 gap-2">
