@@ -43,15 +43,24 @@ const Topbar = () => {
       className={`fixed left-0 right-0 top-0 z-50 h-[60px] md:h-[88px] w-full transition-colors duration-200 ease-out ${navBackgroundClass}`}
     >
       <div className="mx-auto flex h-full w-full items-center justify-between px-6">
-        <div className="relative h-[48px] w-[48px]">
-          <Image
-            src={logo}
-            alt="Venue logo"
-            fill
-            sizes="48px"
-            priority
-            className="object-contain"
-          />
+        <div className="flex items-center gap-2">
+          <div className="relative h-[48px] w-[48px]">
+            <Image
+              src={logo}
+              alt="Venue logo"
+              fill
+              sizes="48px"
+              priority
+              className="object-contain"
+            />
+          </div>
+          <p
+            className={`text-2xl font-bold text-[#FF5733] hidden ${
+              !isSearchBarVisible ? "md:block" : ""
+            } lg:hidden`}
+          >
+            Venuze
+          </p>
         </div>
         {!isSearchBarVisible && (
           <div className="text-black hidden md:block">
@@ -65,7 +74,10 @@ const Topbar = () => {
             isSearchBarVisible ? "md:flex" : "lg:flex"
           }`}
         >
-          <button onClick={handleNotImplementedClick} className="flex items-center gap-2 rounded-[10px] bg-white px-6 py-2 shadow-md transition hover:shadow-lg h-[40px] cursor-pointer ">
+          <button
+            onClick={handleNotImplementedClick}
+            className="flex items-center gap-2 rounded-[10px] bg-white px-6 py-2 shadow-md transition hover:shadow-lg h-[40px] cursor-pointer "
+          >
             <span className="font-medium text-[#FF5733]">Add your listing</span>
             <Image
               src={dropdownIcon}
@@ -74,7 +86,10 @@ const Topbar = () => {
               height={6}
             />
           </button>
-          <button onClick={handleNotImplementedClick} className="flex items-center gap-2 rounded-[10px] bg-white px-5 py-2 shadow-md transition hover:shadow-lg h-[40px] cursor-pointer">
+          <button
+            onClick={handleNotImplementedClick}
+            className="flex items-center gap-2 rounded-[10px] bg-white px-5 py-2 shadow-md transition hover:shadow-lg h-[40px] cursor-pointer"
+          >
             <span className="font-medium text-[#FF5733]">EN</span>
             <Image
               src={dropdownIcon}
@@ -83,7 +98,10 @@ const Topbar = () => {
               height={6}
             />
           </button>
-          <button onClick={handleNotImplementedClick} className="flex items-center justify-center rounded-[10px] bg-white px-4 py-2 shadow-md transition hover:shadow-lg h-[40px] w-[44px] cursor-pointer">
+          <button
+            onClick={handleNotImplementedClick}
+            className="flex items-center justify-center rounded-[10px] bg-white px-4 py-2 shadow-md transition hover:shadow-lg h-[40px] w-[44px] cursor-pointer"
+          >
             <Image src={userIcon} alt="User menu" width={10} height={15} />
           </button>
         </div>
@@ -97,7 +115,10 @@ const Topbar = () => {
               } items-center gap-3`}
             >
               <p>Baby Shark</p>
-              <button onClick={handleNotImplementedClick} className="flex items-center justify-center rounded-[10px] bg-white px-4 py-2 shadow-md transition hover:shadow-lg h-[40px] w-[44px] cursor-pointer">
+              <button
+                onClick={handleNotImplementedClick}
+                className="flex items-center justify-center rounded-[10px] bg-white px-4 py-2 shadow-md transition hover:shadow-lg h-[40px] w-[44px] cursor-pointer"
+              >
                 <Image src={userIcon} alt="User menu" width={10} height={15} />
               </button>
             </div>
@@ -109,7 +130,10 @@ const Topbar = () => {
                 isSearchBarVisible ? "md:hidden" : "lg:hidden"
               } items-center gap-3`}
             >
-              <button onClick={handleNotImplementedClick} className="flex items-center gap-2 rounded-[10px] bg-white px-6 py-2 shadow-md transition hover:shadow-lg h-[40px] cursor-pointer ">
+              <button
+                onClick={handleNotImplementedClick}
+                className="flex items-center gap-2 rounded-[10px] bg-white px-6 py-2 shadow-md transition hover:shadow-lg h-[40px] cursor-pointer "
+              >
                 <span className="font-medium text-black">Add your listing</span>
                 <Image
                   src={dropdownIcon}
@@ -119,7 +143,10 @@ const Topbar = () => {
                 />
               </button>
 
-              <button onClick={handleNotImplementedClick} className="flex items-center justify-center shadow-md transition hover:shadow-lg h-[40px] w-[44px] cursor-pointer">
+              <button
+                onClick={handleNotImplementedClick}
+                className="flex items-center justify-center shadow-md transition hover:shadow-lg h-[40px] w-[44px] cursor-pointer"
+              >
                 <Image src={menuIcon} alt="Menu icon" width={44} height={44} />
               </button>
             </div>
