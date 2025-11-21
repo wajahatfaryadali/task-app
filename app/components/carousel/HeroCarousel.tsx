@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import heroImage from "../../assets/pngs/img-1.png";
 
@@ -8,14 +8,6 @@ const slides = [heroImage, heroImage, heroImage, heroImage];
 
 const HeroCarousel = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveIndex((prevIndex) => (prevIndex + 1) % slides.length);
-    }, 5000);
-
-    return () => clearInterval(interval);
-  }, []);
 
   return (
     <section className="relative h-screen w-full overflow-hidden text-white">
@@ -51,14 +43,17 @@ const HeroCarousel = () => {
         </div>
       </div>
 
-      <div className="absolute bottom-10 left-1/2 z-10 flex -translate-x-1/2 gap-3">
+      <div className="absolute bottom-10 left-1/2 z-10 flex -translate-x-1/2 gap-2">
         {slides.map((_, index) => (
           <button
             key={`hero-dot-${index}`}
             onClick={() => setActiveIndex(index)}
             aria-label={`Show slide ${index + 1}`}
-            className={`h-3 w-3 rounded-full border border-white transition ${
-              index === activeIndex ? "bg-white" : "bg-transparent"
+            aria-current={index === activeIndex ? "true" : undefined}
+            className={`h-2 rounded-full transition-all duration-300 ease-out cursor-pointer ${
+              index === activeIndex
+                ? "w-[28px] bg-[#FEC432]"
+                : "w-2 bg-[#D9D9D9]"
             }`}
           />
         ))}
