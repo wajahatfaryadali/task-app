@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import Image from "next/image";
 import dropdownIcon from "../../../assets/svgs/dropdown-icon.svg";
 import type { MenuKeyEnum, SelectOption } from "../config";
