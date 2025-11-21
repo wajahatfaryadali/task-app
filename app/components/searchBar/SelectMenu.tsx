@@ -60,7 +60,7 @@ const SelectMenu = ({ label, options, defaultValue }: SelectMenuProps) => {
       </button>
 
       {isOpen && (
-        <div className="absolute left-0 right-0 top-full z-200 mt-2 max-h-40 overflow-y-auto rounded-[14px] border border-[#F2F2F2] bg-white shadow-[0px_32px_60px_-40px_rgba(20,16,36,0.5)] no-scrollbar">
+        <div className="absolute left-0 right-0 top-full z-10 mt-2 max-h-30 overflow-y-auto border border-[#F2F2F2] bg-white shadow-[0px_32px_60px_-40px_rgba(20,16,36,0.5)] ">
           {options.map((option) => {
             const isSelected = option.value === selectedOption.value;
             return (
@@ -68,7 +68,7 @@ const SelectMenu = ({ label, options, defaultValue }: SelectMenuProps) => {
                 key={option.value}
                 type="button"
                 onClick={() => handleSelect(option)}
-                className={`flex w-full items-center justify-between px-4 py-3 text-[16px] font-medium text-[#1A1A1A] transition hover:bg-[#FFF5F2] ${
+                className={`flex w-full items-center justify-between px-4 py-2 text-[14px] font-medium text-[#1A1A1A] transition hover:bg-[#FFF5F2] ${
                   isSelected ? "text-[#FF5037]" : ""
                 }`}
               >
