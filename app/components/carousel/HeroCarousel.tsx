@@ -39,14 +39,15 @@ const HeroCarousel = () => {
         </div>
       ))}
 
-      <div className="relative z-10 flex h-full flex-col max-w-[1054px] mx-auto items-center justify-center px-6 text-center">
+      <div className="relative z-10 flex h-full flex-col max-w-[1054px] mx-auto items-center justify-center px-6 text-center gap-5">
         <h1 className="text-[30px] md:text-[50px] lg:text-[70px] font-bold leading-tight w-[340px] md:w-[800px]">
           Celebrate <br className="hidden md:block lg:hidden" /> in venues big and small
         </h1>
-        <div className="w-full mt-[20px] lg:mt-30">
+        <div className="w-full mt-10 lg:mt-20">
           <SearchBar />
         </div>
-        <div className="absolute bottom-10 md:bottom-30 left-1/2 z-10 flex -translate-x-1/2 gap-2">
+        {/* <div className="absolute bottom-[5%] md:bottom-30 left-1/2 z-10 flex -translate-x-1/2 gap-2"> */}
+        <div className=" z-10 flex gap-2">
           {slides.map((_, index) => (
             <button
               key={`hero-dot-${index}`}
